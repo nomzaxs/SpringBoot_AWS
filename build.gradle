@@ -1,39 +1,37 @@
-//의존성 관련 내용이다.
 buildscript {
-    //스프링부트의 전역 변수를 형성하고 그 릴리즈 버전을 2.1.9로 사용하겠단 의미다.
+    // ext는 build.gradle에서 사용하는 전역변수를 설정하겠다는 의미이다.
     ext {
-        springBootVersion = '2.1.9.RELEASE'
+        springBootVersion = '2.1.7.RELEASE' //springBootVersion을 2.1.7.RELEASE로 하겠다는 의미이다.
     }
+
+    //repositories는 각종 의존성(라이브러리)들을 어던 원격 저장소에서 받을지를 정한다.
     repositories {
-        mavenCentral()
-        jcenter()
+        mavenCentral()  //기본적으로 얘를 많이 사용하지만,
+        jcenter()        //얘를 많이 사용하기도한다!
     }
-    //하단의 dependencies의 특정 버전을 선언하지 않으면 이곳에서 적용된 버전을 따라간다.
+
     dependencies {
+        //spring-boot-gradle-plugin라는 스프링 부트 그레이들 플러그인의 2.1.7.RELEASE를 의존성으로 받겠다는 의미이다.
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
-//인텔리재이의 플러그인에 대한 설정이다.
+//아래 4가지는 자바와 스프링부트를 사용하기 위해 꼭 필요한 플러그인들이다! 항상 추가를하자!
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+apply plugin: 'io.spring.dependency-management' //스프링부트의 의존성들을 관리해 주는 플러그인
 
-//주의: com.test.page 는 처음에 작성했던 그룹과 일치해야 한다.
-group 'com.test.page'
-version '1.0-SNAPSHOT-'
+group 'com.web.book'
+version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
-//라이브러리들을 어떤 원격 저장소에서 받을 것인지 정한다.
-//기본적으로 mavencentral을 많이 사용하지만 최근에는 jcenter도 사용하는 추세다.
+
 repositories {
     mavenCentral()
 }
 
-//프로젝트 개발에 필요한 의존성을 선언하는 장소다.
-//스프링부트web, 롬복, jpa등등을 사용할 수 있는 장소다.
+//프로젝트에 개발에 필요한 의존성들을 선언하는 곳이다!
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
-// 7버전에서는 compile, testCompile 대신 implementation, testImplementation 사용
