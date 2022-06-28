@@ -32,19 +32,28 @@ repositories {
 
 //프로젝트에 개발에 필요한 의존성들을 선언하는 곳이다!
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation('org.springframework.boot:spring-boot-starter-web')
+
 
     // Gradle 5.x 이상 Lombok 의존성 추가
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
 
     // jpa 의존성 추가
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
 
     // db
-    runtimeOnly 'com.h2database:h2'
+    runtimeOnly('com.h2database:h2')
 
     // mustache
-    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
+
+    // security
+    implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+    // spring-session-jdbc
+    implementation('org.springframework.session:spring-session-jdbc')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation("org.springframework.security:spring-security-test")
 }
